@@ -20,8 +20,16 @@ namespace LlamaFA
             InitializeComponent();
             Beolvas();
             Feltolt();
+            tbEv.TextChanged += TbkTextChanged;
+            tbNev.TextChanged += TbkTextChanged;
+            tbIz.TextChanged += TbkTextChanged;
 
             this.BackColor = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255));
+        }
+
+        private void TbkTextChanged(object sender, EventArgs e)
+        {
+            b1.Enabled = tbNev.Text.Length != 0 && tbEv.Text.Length != 0 && tbIz.Text.Length != 0;
         }
 
         private void Feltolt()
@@ -85,6 +93,14 @@ namespace LlamaFA
             else
             {
                 MessageBox.Show("Új láma rögzítve!");
+
+                var sw = new StreamWriter(@"lama.txt", true);
+                sw.Write(tbNev.Text + ';');
+                sw.Write(tbEv.Text + ';');
+                sw.WriteLine(tbIz.Text);
+                sw.Close();
+
+                Application.Restart();
             }
         }
     }

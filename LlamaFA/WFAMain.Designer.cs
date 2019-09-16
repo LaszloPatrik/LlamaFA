@@ -41,6 +41,7 @@
             // 
             // b1
             // 
+            this.b1.Enabled = false;
             this.b1.Location = new System.Drawing.Point(12, 105);
             this.b1.Name = "b1";
             this.b1.Size = new System.Drawing.Size(357, 23);
